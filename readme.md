@@ -43,12 +43,16 @@ Run the `compare.ipynb` notebook to see the direct comparison. Here's what you c
 
 ![output](assets/output.png)
 
+The graph below shows the validation loss for both babyBitNet and the standard babyGPT on the Tiny Shakespeare dataset.
+
 | Model | Learning Rate | Validation Loss
 | :--- | :--- | :--- |
 | **babyBitNet** | $9 \times 10^{-4}$ | ~1.93 |
 | babyGPT | $1 \times 10^{-3}$ | ~1.84 |
 
-There is a small performance trade-off for tiny models, the original paper shows that this gap closes as models get larger.
+On this small scale, we observe a performance trade-off, with the full-precision babyGPT achieving a lower validation loss. The original paper suggests that this performance gap will close as models get larger.
+
+Our experiment uses the Tiny Shakespeare dataset (1 million characters), whereas the original paper uses a dataset containing 100 billion tokens. This difference in scale likely explains why we did not observe some training phenomena noted in the paper. For example, the original paper notes that BitNet b1.58 is more stable, allowing it to be trained with a higher learning rate. Furthermore, we did not observe the characteristic "S-shaped" learning curve described in the paper, nor did we see a performance improvement when reducing the learning rate mid-training. These phenomena are likely properties of training at a massive scale, which our small-scale experiment cannot reproduce.
 
 ## Future Work
 
