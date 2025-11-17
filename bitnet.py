@@ -39,7 +39,6 @@ def weight_quant(w):
 class BitLinear(nn.Linear):
     def __init__(self, in_features, out_features, bias=False):
         super(BitLinear, self).__init__(in_features, out_features, bias)
-        # Attributs pour l'inférence (seront remplis après l'entraînement)
         self.register_buffer('weight_quantized', None)
         self.register_buffer('weight_scale', None)
 
